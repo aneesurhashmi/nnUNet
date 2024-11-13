@@ -149,7 +149,7 @@ class nnUNetTrainer(object):
         self.oversample_foreground_percent = 0.33
         self.num_iterations_per_epoch = 250
         self.num_val_iterations_per_epoch = 50
-        self.num_epochs = 1000
+        self.num_epochs = 500
         self.current_epoch = 0
         self.enable_deep_supervision = True
 
@@ -895,7 +895,11 @@ class nnUNetTrainer(object):
         if isinstance(mod, OptimizedModule):
             mod = mod._orig_mod
 
-        mod.decoder.deep_supervision = enabled
+        try:
+            mod.decoder.deep_supervision = enabled
+        except AttributeError:
+            print("WARNING: Could not set deep supervision flag. This is not a problem if you are not using deep ")
+    
 
     def on_train_start(self):
         # dataloaders must be instantiated here (instead of __init__) because they need access to the training data

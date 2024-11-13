@@ -272,9 +272,22 @@ def run_training_entry():
     else:
         device = torch.device('mps')
 
-    run_training(args.dataset_name_or_id, args.configuration, args.fold, args.tr, args.p, args.pretrained_weights,
-                 args.num_gpus, args.use_compressed, args.npz, args.c, args.val, args.disable_checkpointing, args.val_best,
-                 device=device)
+    run_training(
+        args.dataset_name_or_id, 
+        args.configuration, 
+        args.fold, 
+        args.tr, 
+        args.p, 
+        args.pretrained_weights,
+        args.num_gpus, 
+        args.use_compressed, 
+        args.npz, 
+        args.c, 
+        args.val, 
+        args.disable_checkpointing, 
+        args.val_best,
+        device=device
+        )
 
 
 if __name__ == '__main__':
